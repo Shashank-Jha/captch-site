@@ -1,0 +1,71 @@
+<html>
+
+<head>
+  <title>Captcha Code Generator</title>
+  <link rel="stylesheet" href="main.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+</head>
+
+<body>
+  <center>
+    <h1>Submit Form with Captcha</h1>
+    <div class="container">
+      <form name="mainform">
+        <div class="logo">
+          <span class="material-symbols-outlined">
+            face
+            </span>
+        </div>
+        <input class="submitForm" type="text" placeholder="Enter Name" onchange=checkEmpty(e)>
+        <input class="submitForm" type="text" placeholder="Enter email">
+        <input class="submitForm" type="password" placeholder="Enter Password">
+        <input class="submitForm" type="password" placeholder="Confirm Password">
+        <input type="text" id="captchaTxtArea" name="text" value=""><br />
+        <h4>Enter the Captcha</h4>
+        <input type="text" id="CaptchaEnter" ><br />
+        <div class="btn-container">
+          <button type="button" value="REFRESH" id="refreshbtn" onclick="genNewCaptcha()">
+            <span class="material-symbols-outlined">
+              refresh
+              </span>
+          </button>
+          <input type="button" value="REGISTER" id="submitbtn" onclick="checkCaptcha()">
+        </div>
+        
+
+      </form>
+    </div>
+  </center>
+  <script type="text/javascript">
+    var captcha, chars;
+    genNewCaptcha();
+    function genNewCaptcha() {
+      chars = "1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+      captcha = chars[Math.floor(Math.random() * chars.length)];
+      for (var i = 0; i < 6; i++) {
+        captcha = captcha + chars[Math.floor(Math.random() * chars.length)];
+      }
+      mainform.text.value = captcha;
+    }
+
+    function checkSubmit(){
+      var name = document.getElementById("").value;
+
+    }
+
+    function checkCaptcha() {
+      var check = document.getElementById("CaptchaEnter").value;
+      if (captcha == check) {
+        alert("Valid Captcha!!! Success");
+        document.getElementById("CaptchaEnter").value = "";
+      } else {
+        alert("InValid Captcha!!! Please Try Again");
+        document.getElementById("CaptchaEnter").value = "";
+      }
+
+      genNewCaptcha();
+    }
+  </script>
+</body>
+
+</html>
